@@ -12,49 +12,8 @@
 
     <%= yield %>
 
-    <script>
-      
-      function initMap() {
-        
-        var latLong = {lat: 35.591391, lng: -82.551023};
-
-
-		var image = "<%= asset_path 'dragon.png'%>"
-
-        var mapOptions = {
-          zoom: 4,
-          center: latLong,
-          scrollwheel: false  
-        };
-
-        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-        var marker = new google.maps.Marker({
-          position: latLong,
-          map: map,
-          title: 'Stronbox West',
-          icon: image,
-          animation: google.maps.Animation.BOUNCE
-        });
-
-         var contentString = '<h2>RARRRRRr</h2>' + '<p>Where all your dreams come true with fire.</p>';
-
-		 var infowindow = new google.maps.InfoWindow({
-		   content: contentString
-		 });
-
-		 google.maps.event.addListener(marker, 'click', function() {
-		    infowindow.open(map,marker);
-		 });
-      }
-
-
-
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['google_api_key'] %>&callback=initMap">
     </script>
-
-    <script async defer 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXaoi1W0Y9kr98rHzCQMZgcziZo6QWShw&callback=initMap">
-    </script>
-  
   </body>
 </html>
